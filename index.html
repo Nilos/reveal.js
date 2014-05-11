@@ -38,6 +38,10 @@
 			th, td {
 				text-align: center !important;
 			}
+
+			p.center {
+				text-align: center;
+			}
 		</style>
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -53,7 +57,7 @@
 				<section>
 					<h1 style="font-size:3.60em">Consensus Algorithms</h1>
 					<h3>Making processes agree on one value</h3>
-					<p>
+					<p class="center">
 						<small>by Nils Kenneweg</small>
 					</p>
 				</section>
@@ -94,7 +98,7 @@
 				<section>
 					<section>
 						<h2>Paxos</h2><br>
-						<p>
+						<p class="center">
 							<small>by Leslie Lamport (year)</small>
 						</p>
 
@@ -132,9 +136,12 @@
 					<section>
 						<h2>Phase 1: Prepare</h2><br>
 
-						<p>
-							Proposer: receives a request from a client.<br>
-							Proposer: increases his internal counter.<br><br>
+						<p class="center">
+							Proposer:<br>
+							<ul>
+								<li>receives a request from a client.</li>
+								<li>increases his internal counter.</li>
+							</ul>
 						</p>
 
 						<table width="100%">
@@ -147,7 +154,7 @@
 						<h2>Phase 2: Promise</h2><br>
 
 						<p>
-							Acceptor: If internal counter is smaller than counter given in prepare request<br><br>
+							Acceptor: If internal counter is smaller than counter given in prepare request:<br><br>
 						</p>
 
 						<table width="100%">
@@ -160,7 +167,8 @@
 						<h2>Phase 3: Accept!</h2><br>
 
 						<p>
-							If a quorum of acceptors send a promise with my number or a smaller number<br><br>
+							Proposer:<br>
+							If a quorum of acceptors send a promise with my number or a smaller number<br>
 							Change my value to the value with the smallest number<br><br>
 						</p>
 
@@ -186,6 +194,27 @@
 						</table>
 
 						<p>
+					</section>
+					<section>
+						<h2>Leader</h2>
+
+						<ul>
+							<li>Not necessary</li>
+							<li>Two proposers might steal each others promises otherwise<br/></li>
+							<li>Ensures Liveness</li>
+						</ul>
+
+					</section>
+					<section>
+						<h2>Disadvantages and Optimizations</h2><br>
+						<ul>
+							<li>Accepted has to be sent from every acceptor to every learner</li>
+							<li>Multi-Paxos: Do only one Prepare and Promise and only repeat Accept and Accepted by adding instance numbers</li>
+							<li>Sent prepare and accept only to a quorum of acceptors</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Questions regarding Paxos?</h2>
 					</section>
 				</section>
 
