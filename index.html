@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Consensus Algorithm</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -31,6 +31,14 @@
 			}
 		</script>
 
+		<style>
+			p {
+				text-align: left;
+			}
+			th, td {
+				text-align: center !important;
+			}
+		</style>
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -43,29 +51,148 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
+					<h1 style="font-size:3.60em">Consensus Algorithms</h1>
+					<h3>Making processes agree on one value</h3>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+						<small>by Nils Kenneweg</small>
 					</p>
 				</section>
 
 				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
+					<section>
+						<h2>Motivation</h2><br>
+						<ul>
+							<li>Database Replication</li>
+							<li>Test2</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Definitions</h2><br>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
+						<p>
+							<br>
+							Safety: At most one value will be chosen by the system.<br><br>
+							Liveness: If a value has been proposed it is possible that a learner will learn some value.<br>
+						</p>
+						<aside class="notes">
+							Safety: Not two values can be learned by different learners.<br>
+							Liveness: Those values do not have to be the same. If two values are proposed it might be that one is ignored completely.
+						</aside>
+					</section>
+
+					<section>
+						<h2>Assumptions</h2><br>
+
+						<p>
+							Processors can fail but not loose state or lie.<br/>
+							Messages can be duplicated or lost but not be corrupted.
+						</p>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h2>Paxos</h2><br>
+						<p>
+							<small>by Leslie Lamport (year)</small>
+						</p>
+
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Roles</h2><br>
+						<p>
+							<br>
+							<strong>Client</strong>: Issues a request to proposers<br><br>
+							<strong>Proposer</strong>: Proposes value to acceptors.<br>
+							<strong>Acceptor</strong>: Vote on which value is chosen<br>
+							<strong>Learner</strong>: Receive chosen value and change their state<br><br>
+							<strong>Leader</strong>: Designated Proposer who issues all proposals
+						</p>
+						<aside class="notes">
+							Leader is only necessary for progress!
+						</aside>
+					</section>
+					<section>
+						<h2>The algorithm</h2><br>
+
+						<p>
+							<h3>4 Phases</h3>
+							<ol>
+								<li>Prepare(number)</li>
+								<li>Promise(number, value)</li>
+								<li>Accept!(number, value)</li>
+								<li>Accepted(number, value)</li>
+							</ol><br>
+						</p>
+					</section>
+					<section>
+						<h2>Phase 1: Prepare</h2><br>
+
+						<p>
+							Proposer: receives a request from a client.<br>
+							Proposer: increases his internal counter.<br><br>
+						</p>
+
+						<table width="100%">
+							<tr><th width="33%">Proposer</th><th width="33%">Acceptor</th><th width="33%">Learner</th></tr>
+							<tr><td colspan="2" style="text-align:center">----></td></tr>
+							<tr><td colspan="2" style="text-align:center">Prepare(counter)</td></tr>
+						</table>
+					</section>
+					<section>
+						<h2>Phase 2: Promise</h2><br>
+
+						<p>
+							Acceptor: If internal counter is smaller than counter given in prepare request<br><br>
+						</p>
+
+						<table width="100%">
+							<tr><th width="33%">Proposer</th><th width="33%">Acceptor</th><th width="33%">Learner</th></tr>
+							<tr><td colspan="2" style="text-align:center"><----</td></tr>
+							<tr><td colspan="2" style="text-align:center">Promise(counter)</td></tr>
+						</table>
+					</section>
+					<section>
+						<h2>Phase 3: Accept!</h2><br>
+
+						<p>
+							If a quorum of acceptors send a promise with my number or a smaller number<br><br>
+							Change my value to the value with the smallest number<br><br>
+						</p>
+
+						<table width="100%">
+							<tr><th width="33%">Proposer</th><th width="33%">Acceptor</th><th width="33%">Learner</th></tr>
+							<tr><td colspan="2" style="text-align:center">----></td></tr>
+							<tr><td colspan="2" style="text-align:center">Accept!(counter, value)</td></tr>
+						</table>
+					</section>
+					<section>
+						<h2>Phase 4: Accepted</h2><br>
+
+						<p>
+							Acceptor: If my internal counter equals the given counter:
+						</p>
+
+						<table width="100%">
+							<tr><th width="33%">Proposer</th><th width="33%">Acceptor</th><th width="33%">Learner</th></tr>
+							<tr><td colspan="3" style="text-align:center"><-------------------------------------------------></td></tr>
+							<tr><td colspan="3" style="text-align:center">Accepted(counter, value)</td></tr>
+							<tr><td></td colspan="2"><td></td><td>Use value</td></tr>
+							<tr><td></td colspan="2"><td></td><td>Respond client request</td></tr>
+						</table>
+
+						<p>
+					</section>
 				</section>
 
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
-						<h2>Vertical Slides</h2>
+						<h2>Vertical Slides</h2><br>
 						<p>
 							Slides can be nested inside of other slides,
 							try pressing <a href="#" class="navigate-down">down</a>.
