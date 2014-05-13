@@ -239,8 +239,90 @@
 					<section>
 						<h2>Egalitarian Paxos</h2><br>
 						<p class="center">
-							<small>by TODO: whom? (year)</small>
+							<small>by Iulian Moraru, David G. Andersen and Michael Kaminsky (2013)</small>
 						</p>
+					</section>
+					<section>
+						<h2>Motivation</h2><br>
+						<ul>
+							<li>Paxos needs a leader to make progress</li>
+							<li>Leader has higher workload than other nodes</li>
+							<li>Leader failure creates a long delay</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Basic Idea</h2><br>
+						<ul>
+							<li>No leader, egalitarian nodes</li>
+							<li>global command sortation based on local slot id, replica id (and epoche number)</li>
+							<li>Command Dependencies</li>
+							<li>Fast-Commit for non interfering commands</li>
+							<li>Use Paxos to agree on command dependencies</li>
+							<li>Commit interfering commands based on global sortation</li>
+						</ul>
+					</section>
+					<section data-transition="none">
+						<h2>The Protocol: Phase 1</h2><br>
+
+						Command Leader:<br>
+						<ul style="width: 100%; beight: 960px">
+							<li>Receives command</li>
+							<li>Increase instance number.</li>
+							<li>Find dependencies (commands interfering).</li>
+							<li>Set command sequence number to maximum of dependencies</li>
+							<li>Send command, sequence number and dependencies</li>
+						</ul>
+
+					</section>
+					<section data-transition="none">
+						<h2>The Protocol: Phase 1</h2><br>
+
+						Other Replica:<br>
+						<ul style="width: 100%">
+							<li>Find dependencies</li>
+							<li>Union both dependency lists (local and remote)</li>
+							<li>Set sequence number to maximum</li>
+							<li>Sent back command, sequence number and dependencies</li>
+						</ul><br><br>
+
+					</section>
+					<section data-transition="none">
+						<h2>The Protocol: Phase 1</h2><br>
+						Command Leader:<br>
+						<!-- Todo: better visual representation -->
+						<ul style="width: 100%">
+							<li>After Receiving a quorum</li>
+							<li>If everyone has the same dependencies and sequence number for my command:</li>
+							<li>Commit command</li>
+							<li>Otherwise: Phase 2</li>
+						</ul>
+					</section>
+					<section data-transition="none">
+						<h2>The Protocol: Phase 2</h2><br>
+						Command Leader:<br>
+						<!-- Todo: better visual representation -->
+						<ul style="width: 100%">
+							<li>Union all dependency lists</li>
+							<li>Set sequence number to maximum received</li>
+							<li>Sent data to majority of replicas</li>
+							<li>After a majority responded, commit command</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Advantages</h2><br>
+
+						<ul>
+							<li>Work Load fully distributed</li>
+							<li>Throughput tolerates more failures</li>
+							<li>Faster with a lot of non-interfering commands</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Disadvantages</h2><br>
+						<ul>
+							<li>Knowledge of interfering commands necessary</li>
+							<li>Algorithm is a lot more complex</li>
+						</ul>
 					</section>
 				</section>
 
