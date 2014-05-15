@@ -77,6 +77,7 @@
 
 						<p>
 							<br>
+							Consensus: Make a number of processes agree on a single value even when some fail<br><br>
 							Non-Triviality: Only proposed values will be chosen.<br><br>
 							Safety: At most one value will be chosen by the system.<br><br>
 							Liveness: If a value has been proposed it is possible that a learner will learn some value.<br>
@@ -159,7 +160,7 @@
 						<table width="100%">
 							<tr><th width="33%">Proposer</th><th width="33%">Acceptor</th><th width="33%">Learner</th></tr>
 							<tr><td colspan="2" style="text-align:center"><----</td></tr>
-							<tr><td colspan="2" style="text-align:center">Promise(counter)</td></tr>
+							<tr><td colspan="2" style="text-align:center">Promise(counter, value)</td></tr>
 						</table>
 					</section>
 					<section>
@@ -199,8 +200,6 @@
 
 						<ul>
 							<li>Basic Example</li>
-							<li>Failing Acceptor</li>
-							<li>Message Duplication</li>
 							<li>Dualing Proposers</li>
 							<li>Complex example</li>
 						</ul>
@@ -215,7 +214,7 @@
 						<h2>Leader</h2>
 
 						<ul>
-							<li>Not necessary</li>
+							<li>Not necessary for safety</li>
 							<li>Two proposers might steal each others promises otherwise<br/></li>
 							<li>Ensures Liveness</li>
 						</ul>
@@ -300,7 +299,6 @@
 					<section data-transition="none">
 						<h2>The Protocol: Phase 2</h2><br>
 						Command Leader:<br>
-						<!-- Todo: better visual representation -->
 						<ul style="width: 100%">
 							<li>Union all dependency lists</li>
 							<li>Set sequence number to maximum received</li>
@@ -339,10 +337,13 @@
 
 						<p>
 							Paxos is difficult. Make a simpler approach.<br>
-							Try not to agree on one value but to agree on a list of actions<br>
+							Try not to agree on one value but agree on a list of actions<br>
 							Have a strong leader<br>
-							Distinguish terms by using a logical clock.
+							Distinguish leader terms by using a logical clock.
 						</p>
+						<aside class="notes">
+							Term: Amtszeit
+						</aside>
 					</section>
 					<section>
 						<h2>Roles</h2><br>
@@ -428,9 +429,9 @@
 				<section>
 					<h2>Sources</h2><br>
 					<p>
-						Paxos made Simple<br>
-						In Search of an Understandable Consensus Algorithm<br>
-						There is more Consensus in Egalitarian Parliaments<br>
+						Leslie Lamport (2001). "Paxos made Simple"<br>
+						Diego Ongaro and John Ousterhout (Draft of February 22, 2014). "In Search of an Understandable Consensus Algorithm". Stanford University<br>
+						Iulian Moraru, David G. Andersen, Michael Kaminsky (2013). "There is more Consensus in Egalitarian Parliaments". Carnegie Mellon University and Intel Labs. Page 358-372<br>
 					</p>
 				</section>
 
