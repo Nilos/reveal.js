@@ -77,9 +77,16 @@
 					<h2>Motivation</h2><br>
 
 					<ul>
-						<li></li>
-						<li></li>
+						<li>Cryptography provides data security and integrity</li>
+						<li>Everybody has got a browser</li>
+						<li>Users are used to web pages</li>
+						<li>Cross-Platform</li>
+						<li>Web Pages are easier to use and usually provide richer user experience</li>
 					</ul>
+
+					<aside class="notes">
+						Also: installed applications are not that much used any more
+					</aside>
 				</section>
 
 				<section>
@@ -88,8 +95,11 @@
 					<ul>
 						<li><a href="https://github.com/openpgpjs/openpgpjs">OpenPGPJS</a>: JavaScript implementation of PGP</li>
 						<li><a href="https://github.com/bitwiseshiftleft/sjcl/">SJCL</a>: Library written by Stanford Computer Security Lab</li>
-						<li><a href="https://github.com/digitalbazaar/forge">Forge</a>: A native implementation of TLS in Javascript</li>
+						<li><a href="https://github.com/digitalbazaar/forge">Forge</a>: An implementation of TLS in Javascript</li>
+						<li><a href="https://github.com/tonyg/js-nacl">JS-NaCl</a>: Emscripten-compiled Javascript version of NaCl</li>
 					</ul>
+					<br><br>
+					<p style="text-align: center">Many more</p>
 				</section>
 
 				<section>
@@ -145,7 +155,9 @@
 						<h2>secure key storage</h2><br>
 
 						<p>
-
+							This is not solveable at the moment<br>
+							If a key is stored on the device, it can only be secured by the users password<br>
+							Hibernation remains a problem<br>
 						</p>
 					</section>
 					<section>
@@ -153,7 +165,7 @@
 
 						<p>
 							Every time one opens the web-page, the JS-Crypto-Application is reinstalled<br><br>
-							Possible solution: Use ApplicationCache<br>
+							Possible improvement: Use ApplicationCache<br>
 					</section>
 				</section>
 				<section>
@@ -167,14 +179,46 @@
 						</ul>
 					</section>
 					<section>
-						<h2>
+						<h2>Ideas for higher security</h2><br>
+
+						<ul>
+							<li>Crypto-Code in Iframe</li>
+							<li>Secure JavaScript</li>
+							<li>CSP: Disable all external scripts and resources</li>
+						</ul>
 					</section>
 				</section>
 				<section>
 					<h2>Practical Examples</h2><br>
+
+					<ul>
+						<li>Simple encrypted chat</li>
+						<li>Dropbox-like Cloud Storage with encryption</li>
+						<li>Removing passwords on the server in favor of e.g. secure-remote-password</li>
+					</ul>
+				</section>
+				<section>
+					<h2>The Future</h2><br>
+
+					<p>
+						Standardization of Web-Crypto API<br>
+						<ul>
+							<li>Faster encryption</li>
+							<li>Secure Key Storage</li>
+						</ul>
+					<p>
 				</section>
 				<section>
 					<h2>Recap</h2><br>
+
+					<ul>
+						<li></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Thanks for listening</h2><br>
+
+					<p>Questions?</p>
 				</section>
 			</div>
 
