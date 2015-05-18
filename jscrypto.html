@@ -57,8 +57,8 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1 style="font-size:3.60em">JavaScript Cryptography</h1>
-					<h3></h3>
+					<h1>JavaScript Cryptography</h1>
+					<h3>Best practices</h3>
 					<p class="center">
 						<small>by Nils Kenneweg</small>
 					</p>
@@ -105,20 +105,17 @@
 
 				<section>
 					<section>
-						<h2>Problems</h2><br>
-
 						<blockquote cite="http://matasano.com/articles/javascript-cryptography/">Javascript Cryptography Considered Harmful</blockquote>
 						<small>Source: <a href="http://matasano.com/articles/javascript-cryptography/">matasano.com</a></small>
+
+					</section>
+					<section>
+						<h2>The problems</h2>
 
 						<ul>
 							<li>Lack of random numbers</li>
 							<li>secure code transfer</li>
-							<li>Runtime is changeable ("malleable"): 
-								<ul>
-									<li>eval</li>
-									<li>property based JavaScript</li>
-								</ul>
-							</li>
+							<li>Runtime is changeable ("malleable")</li>
 							<li>secure key storage</li>
 							<li>Re-installation every time one accesses the page</li>
 						</ul>
@@ -145,8 +142,24 @@
 						</p>
 					</section>
 					<section>
-						<h2>changeable runtime</h2>
+						<h2>changeable runtime</h2><br>
 
+						<ul>
+							<li>eval and property based JS make review hard</li>
+							<li>changeable properties enable attackers to change everything</li>
+						</ul>
+
+						<h3></h3><br>
+						<ul>
+							<li>content-security-policy
+								<p>
+									
+								</p>
+							</li>
+							<li>static application code eases review</li>
+							<li></li>
+							<li>Advanced: seperate security code into own iframe and use message passing</li>
+						</ul>
 						<p>
 							Use content-security-policy to disable inline JavaScript, eval and alike.<br>
 							Seperate Application and Data (do not generate JS-Code on your server based on input)<br>
@@ -201,11 +214,12 @@
 				<section>
 					<h2>The Future</h2><br>
 
-					<p>
+					<p class="center">
 						Standardization of Web-Crypto API<br>
 						<ul>
 							<li>Faster encryption</li>
 							<li>Secure Key Storage</li>
+							<li>One single API</li>
 						</ul>
 					<p>
 				</section>
@@ -213,13 +227,15 @@
 					<h2>Recap</h2><br>
 
 					<ul>
-						<li></li>
+						<li>JS-Crypto is possible today but hard</li>
+						<li>Web-Crypto API will make it easier and more secure</li>
+						<li>Be sure to have a valid use case <br>(saving on an SSL-certificate is not!)</li>
 					</ul>
 				</section>
 				<section>
 					<h2>Thanks for listening</h2><br>
 
-					<p>Questions?</p>
+					<p class="center">Questions?</p>
 				</section>
 			</div>
 
