@@ -156,23 +156,18 @@
 									
 								</p>
 							</li>
-							<li>static application code eases review</li>
-							<li></li>
+							<li>seperated application code and data server</li>
 							<li>Advanced: seperate security code into own iframe and use message passing</li>
 						</ul>
-						<p>
-							Use content-security-policy to disable inline JavaScript, eval and alike.<br>
-							Seperate Application and Data (do not generate JS-Code on your server based on input)<br>
-						</p>
 					</section>
 					<section>
 						<h2>secure key storage</h2><br>
 
-						<p>
-							This is not solveable at the moment<br>
-							If a key is stored on the device, it can only be secured by the users password<br>
-							Hibernation remains a problem<br>
-						</p>
+						<ul>
+							<li>Key can only be stored unencrypted</li>
+							<li>No KeyChain access</li>
+							<li>Unable to protect memory (disallow write to disk)</li>
+						</ul>
 					</section>
 					<section>
 						<h2>Auto re-install on page load</h2>
