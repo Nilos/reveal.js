@@ -131,17 +131,30 @@
 						<h2>Code!</h2>
 					</section>
 					<section>
-						<h2>Practical Example</h2>
-						<h3>Note taking app</h3><br>
+						<h2>Example</h2>
+						<h3>Login</h3><br>
+
+						<p class="center">
+							Use SRP instead of sending password
+						</p>
+
+						<h3>Advantages:</h3>
 
 						<ul>
-							<li>User generates key on register</li>
-							<li>When re-authenticating, key derivation is used for login</li>
-							<li>Password might be used to secure key in localstorage</li>
+							<li>Proofable secured password</li>
+							<li>Harder to intercept</li>
+							<li>Secure against stolen database</li>
 						</ul>
 					</section>
 					<section>
-						<h2>Code!</h2>
+						<h2>Example</h2>
+						<h3>Chat</h3><br>
+
+						<ul>
+							<li>User generates public-private key pair on register</li>
+							<li>End-to-End encrypt all sent messages</li>
+							<li>User verification is also possible by private key pair</li>
+						</ul>
 					</section>
 				</section>
 
@@ -194,6 +207,7 @@
 							<li>Use HSTS</li>
 							<li>Use Application Cache to make updates clearer</li>
 							<li>Seperate code and data server</li>
+							<li>Allow local code execution (possible with SPA)</li>
 						</ul>
 						
 					</section>
@@ -207,10 +221,10 @@
 
 						<h3>Solution</h3><br>
 						<ul>
-							<li>content-security-policy
-								<p>
-									
-								</p>
+							<li>content-security-policy<br>
+								<i>
+									default-src 'self'
+								</i>
 							</li>
 							<li>seperated application code and data server</li>
 							<li>Advanced: seperate security code into own iframe and use message passing</li>
