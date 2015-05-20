@@ -20,6 +20,8 @@
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -77,16 +79,26 @@
 				<section>
 					<h2>Motivation</h2><br>
 
-					<ul>
-						<li>Cryptography provides data security and integrity</li>
-						<li>Everybody has got a browser</li>
-						<li>Users are used to web pages</li>
-						<li>Cross-Platform</li>
-						<li>Web Pages are easier to use and usually provide richer user experience</li>
-					</ul>
+					<img src="http://carrero.es/wp-content/uploads/2014/07/encrypt-all-the-things-cifrado-de-todo.jpg" style="max-height: 400px">
 
 					<aside class="notes">
 						Also: installed applications are not that much used any more
+					</aside>
+				</section>
+
+				<section>
+					<h2>Motivation</h2><br>
+
+					<ul>
+						<li>Cryptography provides data security and integrity</li>
+						<li>The web is the platform for new products</li>
+						<li>Cross-Platform Support</li>
+						<li>Ease of access</li>
+					</ul>
+
+					<aside class="notes">
+						installed applications are not that much used any more
+						most products are now used in the web
 					</aside>
 				</section>
 
@@ -105,8 +117,43 @@
 
 				<section>
 					<section>
+						<h2>Practical Example - Note taking app</h2><br>
+
+						<ul>
+							<li>Notes are encrypted in the browser</li>
+							<li>Current "backend": localstorage</li>
+							<li>Password has to be re-entered when loading</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Code!</h2>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Practical Example - Authentication</h2><br>
+
+						<ul>
+							<li>User generates key on register</li>
+							<li>When re-authenticating, key derivation is used for login</li>
+							<li>Password might be used to secure key in localstorage</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Code!</h2>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Security</h2>
+					</section>
+					<section>
+						<h2>Security</h2>
+
 						<blockquote cite="http://matasano.com/articles/javascript-cryptography/">Javascript Cryptography Considered Harmful</blockquote>
-						<small>Source: <a href="http://matasano.com/articles/javascript-cryptography/">matasano.com</a></small>
+						<small>Source: <a href="http://matasano.com/articles/javascript-cryptography/">matasano.com</a> (around 2011)</small>
 
 					</section>
 					<section>
@@ -127,19 +174,28 @@
 					<section>
 						<h2>Lack of random numbers</h2><br>
 
-						<p>
-							Javascript has a random number generator in modern browsers<br>
-							Older browsers can use mouse movements
-						</p>
+						<p style="color:green; text-align: center; font-size: 70px;"><i class="fa fa-check"></i> Solved</p>
+						<blockquote cite="https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#Crypto-method-getRandomValues">
+							The getRandomValues method generates cryptographically random values.
+						</blockquote>
+						<aside class="notes">
+							Chrome 11, Firefox 21, IE 11, Opera 15, Safari 3.1
+						</aside>
 					</section>
 					<section>
 						<h2>secure code transfer</h2>
 
-						<p>
-							When downloading the source code via http, an attacker could easily change the crypto code<br><br>
-							<b>Use SSL and HSTS</b><br>
-							If SSL solves your crypto problem, use it instead of JS-Crypto<br>
+						<p class="center">
+							Source code might be changed in transit or on the server<br>
 						</p>
+							
+						<ul>
+							<li>Use SSL</li>
+							<li>Use HSTS</li>
+							<li>Use Application Cache to make updates clearer</li>
+							<li>Seperate code and data server</li>
+						</ul>
+						
 					</section>
 					<section>
 						<h2>changeable runtime</h2><br>
@@ -149,7 +205,7 @@
 							<li>changeable properties enable attackers to change everything</li>
 						</ul>
 
-						<h3></h3><br>
+						<h3>Solution</h3><br>
 						<ul>
 							<li>content-security-policy
 								<p>
@@ -198,15 +254,6 @@
 					</section>
 				</section>
 				<section>
-					<h2>Practical Examples</h2><br>
-
-					<ul>
-						<li>Simple encrypted chat</li>
-						<li>Dropbox-like Cloud Storage with encryption</li>
-						<li>Removing passwords on the server in favor of e.g. secure-remote-password</li>
-					</ul>
-				</section>
-				<section>
 					<h2>The Future</h2><br>
 
 					<p class="center">
@@ -222,8 +269,8 @@
 					<h2>Recap</h2><br>
 
 					<ul>
-						<li>JS-Crypto is possible today but hard</li>
-						<li>Web-Crypto API will make it easier and more secure</li>
+						<li>JS-Crypto is possible today but security is not perfect</li>
+						<li>Web-Crypto API will make it easier to use, faster and more secure</li>
 						<li>Be sure to have a valid use case <br>(saving on an SSL-certificate is not!)</li>
 					</ul>
 				</section>
