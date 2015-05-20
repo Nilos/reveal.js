@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript Cryptography</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		<style>
+			p {
+				text-align: left;
+			}
+
+			th, td {
+				text-align: center !important;
+			}
+
+			p.center {
+				text-align: center;
+			}
+		</style>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>JavaScript Cryptography</h1>
+					<p class="center">
+						<small>by <a href="https://twitter.com/darkcton" target="_blank">Nils Kenneweg</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>About Me</h2><br>
+
+					<ul>
+						<li>JavaScript and Cryptography Enthusiast</li>
+						<li>Maintainer of Stanford-Javascript Crypto Library</li>
+						<li>Founder of <a href="https://www.whispeer.de" target="_blank">www.whispeer.de</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h2>Motivation</h2><br>
+
+						<img src="http://carrero.es/wp-content/uploads/2014/07/encrypt-all-the-things-cifrado-de-todo.jpg" style="max-height: 400px">
+
+						<aside class="notes">
+							Also: installed applications are not that much used any more
+						</aside>
+					</section>
+
+					<section>
+						<h2>Motivation</h2><br>
+
+						<ul>
+							<li>Cryptography provides data security and integrity</li>
+							<li>The web is the platform for new products</li>
+							<li>Cross-Platform Support</li>
+							<li>Ease of access</li>
+						</ul>
+
+						<aside class="notes">
+							installed applications are not that much used any more
+							most products are now used in the web
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h2>Existing Libraries</h2><br>
+
+					<ul>
+						<li><a target="_blank" href="https://github.com/openpgpjs/openpgpjs">OpenPGPJS</a>: JavaScript implementation of PGP</li>
+						<li><a target="_blank" href="https://github.com/bitwiseshiftleft/sjcl/">SJCL</a>: Library written by Stanford Computer Security Lab</li>
+						<li><a target="_blank" href="https://github.com/digitalbazaar/forge">Forge</a>: An implementation of TLS in Javascript</li>
+						<li><a target="_blank" href="https://github.com/tonyg/js-nacl">JS-NaCl</a>: Emscripten-compiled Javascript version of NaCl</li>
+					</ul>
+					<br><br>
+					<p style="text-align: center">Many more</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>Practical Example</h2>
+						<h3>Note taking app</h3><br>
+
+						<ul>
+							<li>Notes are encrypted in the browser</li>
+							<li>Current "backend": localstorage</li>
+							<li>Password has to be re-entered when loading</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Code!</h2>
+					</section>
+					<section>
+						<h2>Example</h2>
+						<h3>Login</h3><br>
+
+						<p class="center">
+							Use SRP instead of sending password
+						</p>
+
+						<h3>Advantages:</h3>
+
+						<ul>
+							<li>Proofable secured password</li>
+							<li>Harder to intercept</li>
+							<li>Secure against stolen database</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Example</h2>
+						<h3>Chat</h3><br>
+
+						<ul>
+							<li>User generates public-private key pair on register</li>
+							<li>End-to-End encrypt all sent messages</li>
+							<li>User verification is also possible by private key pair</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Security</h2>
+					</section>
+					<section>
+						<h2>Security</h2>
+
+						<blockquote cite="http://matasano.com/articles/javascript-cryptography/">Javascript Cryptography Considered Harmful</blockquote>
+						<small>Source: <a target="_blank" href="http://matasano.com/articles/javascript-cryptography/">matasano.com</a> (around 2011)</small>
+
+					</section>
+					<section>
+						<h2>The problems</h2>
+
+						<ul>
+							<li>Lack of random numbers</li>
+							<li>secure code transfer</li>
+							<li>Runtime is changeable ("malleable")</li>
+							<li>secure key storage</li>
+							<li>Re-installation every time one accesses the page</li>
+						</ul>
+
+						<aside class="notes">
+							
+						</aside>
+					</section>
+					<section>
+						<h2>Lack of random numbers</h2><br>
+
+						<p style="color:green; text-align: center; font-size: 70px;"><i class="fa fa-check"></i> Solved</p>
+						<blockquote cite="https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#Crypto-method-getRandomValues">
+							The getRandomValues method generates cryptographically random values.
+						</blockquote>
+						<aside class="notes">
+							Chrome 11, Firefox 21, IE 11, Opera 15, Safari 3.1
+						</aside>
+					</section>
+					<section>
+						<h2>secure code transfer</h2>
+
+						<p class="center">
+							Source code might be changed in transit or on the server<br>
+						</p>
+							
+						<ul>
+							<li>Use SSL</li>
+							<li>Use HSTS</li>
+							<li>Use Application Cache to make updates clearer</li>
+							<li>Seperate code and data server</li>
+							<li>Allow local code execution (possible with SPA)</li>
+						</ul>
+						
+					</section>
+					<section>
+						<h2>changeable runtime</h2><br>
+
+						<ul>
+							<li>eval and property based JS make review hard</li>
+							<li>changeable properties enable attackers to change everything</li>
+						</ul>
+
+						<h3>Solution</h3><br>
+						<ul>
+							<li>content-security-policy<br>
+								<i>
+									default-src 'self'
+								</i>
+							</li>
+							<li>seperated application code and data server</li>
+							<li>Advanced: seperate security code into own iframe and use message passing</li>
+						</ul>
+					</section>
+					<section>
+						<h2>secure key storage</h2><br>
+
+						<ul>
+							<li>Key can only be stored unencrypted</li>
+							<li>No KeyChain access</li>
+							<li>Unable to protect memory (disallow write to disk)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Auto re-install on page load</h2>
+
+						<p>
+							Every time one opens the web-page, the JS-Crypto-Application is reinstalled<br><br>
+							Possible improvement: Use ApplicationCache<br>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Best practices</h2><br>
+
+						<ul>
+							<li>Use SSL - if that solves your crypto-problem, JS-Crypto is not for you</li>
+							<li>Seperate code and data-server</li>
+							<li>Static code, no generated code</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Ideas for higher security</h2><br>
+
+						<ul>
+							<li>Crypto-Code in Iframe</li>
+							<li>Secure JavaScript</li>
+							<li>CSP: Disable all external scripts and resources</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h2>The Future</h2><br>
+
+					<p class="center">
+						Standardization of Web-Crypto API<br>
+						<ul>
+							<li>Faster encryption</li>
+							<li>Secure Key Storage</li>
+							<li>One single API</li>
+						</ul>
+					<p>
+				</section>
+				<section>
+					<h2>Recap</h2><br>
+
+					<ul>
+						<li>JS-Crypto is possible today but security is not perfect</li>
+						<li>Web-Crypto API will make it easier to use, faster and more secure</li>
+						<li>Be sure to have a valid use case <br>(saving on an SSL-certificate is not!)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Thanks for listening</h2><br>
+
+					<p class="center">Questions?</p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
