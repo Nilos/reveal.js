@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -118,7 +119,7 @@
 
 				<section>
 					<section>
-						<h2>Practical Example</h2>
+						<h2>Example</h2>
 						<h3>Note taking app</h3><br>
 
 						<ul>
@@ -126,9 +127,6 @@
 							<li>Current "backend": localstorage</li>
 							<li>Password has to be re-entered when loading</li>
 						</ul>
-					</section>
-					<section>
-						<h2>Code!</h2>
 					</section>
 					<section>
 						<h2>Example</h2>
@@ -173,26 +171,15 @@
 						<h2>The problems</h2>
 
 						<ul>
-							<li>Lack of random numbers</li>
-							<li>secure code transfer</li>
-							<li>Runtime is changeable ("malleable")</li>
-							<li>secure key storage</li>
 							<li>Re-installation every time one accesses the page</li>
+							<li>secure code transfer</li>
+							<li>secure key storage</li>
+							<li>Lack of random numbers</li>
+							<li>Runtime is changeable ("malleable")</li>
 						</ul>
 
 						<aside class="notes">
 							
-						</aside>
-					</section>
-					<section>
-						<h2>Lack of random numbers</h2><br>
-
-						<p style="color:green; text-align: center; font-size: 70px;"><i class="fa fa-check"></i> Solved</p>
-						<blockquote cite="https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#Crypto-method-getRandomValues">
-							The getRandomValues method generates cryptographically random values.
-						</blockquote>
-						<aside class="notes">
-							Chrome 11, Firefox 21, IE 11, Opera 15, Safari 3.1
 						</aside>
 					</section>
 					<section>
@@ -210,6 +197,26 @@
 							<li>Allow local code execution (possible with SPA)</li>
 						</ul>
 						
+					</section>
+					<section>
+						<h2>secure key storage</h2><br>
+
+						<ul>
+							<li>Key can only be stored unencrypted</li>
+							<li>No KeyChain access</li>
+							<li>Unable to protect memory (disallow write to disk)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Lack of random numbers</h2><br>
+
+						<p style="color:green; text-align: center; font-size: 70px;"><i class="fa fa-check"></i> Solved</p>
+						<blockquote cite="https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#Crypto-method-getRandomValues">
+							The getRandomValues method generates cryptographically random values.
+						</blockquote>
+						<aside class="notes">
+							Chrome 11, Firefox 21, IE 11, Opera 15, Safari 3.1
+						</aside>
 					</section>
 					<section>
 						<h2>changeable runtime</h2><br>
@@ -230,22 +237,13 @@
 							<li>Advanced: seperate security code into own iframe and use message passing</li>
 						</ul>
 					</section>
-					<section>
-						<h2>secure key storage</h2><br>
-
-						<ul>
-							<li>Key can only be stored unencrypted</li>
-							<li>No KeyChain access</li>
-							<li>Unable to protect memory (disallow write to disk)</li>
-						</ul>
-					</section>
-					<section>
+					<!--<section>
 						<h2>Auto re-install on page load</h2>
 
 						<p>
 							Every time one opens the web-page, the JS-Crypto-Application is reinstalled<br><br>
 							Possible improvement: Use ApplicationCache<br>
-					</section>
+					</section>-->
 				</section>
 				<section>
 					<section>
@@ -278,6 +276,19 @@
 							<li>One single API</li>
 						</ul>
 					<p>
+
+					<aside class="notes">
+						Partially landed in firefox, chrome already!
+					</aside>
+				</section>
+				<section>
+					<h2>Practical Example</h2>
+					<h3>Note taking app</h3><br>
+
+					<h2>Code!</h2>
+					<aside class="notes">
+						If time remains
+					</aside>
 				</section>
 				<section>
 					<h2>Recap</h2><br>
